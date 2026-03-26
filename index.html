@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOIR — Artisan Café & Kitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">NOIR</div>
+      <div class="preloader-bar-wrap"><div class="preloader-bar" id="preloaderBar"></div></div>
+      <div class="preloader-percent" id="preloaderPercent">0%</div>
+    </div>
+  </div>
+
+  <!-- CINEMATIC INTRO OVERLAY -->
+  <div id="cinematicIntro">
+    <div class="intro-bg"></div>
+
+    <!-- Coffee Pour Scene -->
+    <div class="intro-scene" id="scene-coffee">
+      <div class="coffee-cup">
+        <div class="cup-body">
+          <div class="cup-liquid"></div>
+          <div class="cup-foam"></div>
+        </div>
+        <div class="cup-handle"></div>
+        <div class="cup-saucer"></div>
+      </div>
+      <div class="coffee-pour">
+        <div class="pour-stream"></div>
+        <div class="pour-stream s2"></div>
+        <div class="pour-stream s3"></div>
+      </div>
+      <div class="steam-container">
+        <div class="steam s1"></div>
+        <div class="steam s2"></div>
+        <div class="steam s3"></div>
+        <div class="steam s4"></div>
+        <div class="steam s5"></div>
+      </div>
+      <div class="scene-label">CRAFTED WITH CARE</div>
+    </div>
+
+    <!-- Burger Build Scene -->
+    <div class="intro-scene" id="scene-burger" style="opacity:0;">
+      <div class="burger-stack">
+        <div class="bun-top layer">
+          <div class="sesame s1"></div><div class="sesame s2"></div><div class="sesame s3"></div>
+        </div>
+        <div class="lettuce layer"></div>
+        <div class="tomato layer"></div>
+        <div class="cheese layer"></div>
+        <div class="patty layer"></div>
+        <div class="sauce-drip layer"></div>
+        <div class="bun-bottom layer"></div>
+      </div>
+      <div class="scene-label">BUILT TO PERFECTION</div>
+    </div>
+
+    <!-- Pizza Reveal Scene -->
+    <div class="intro-scene" id="scene-pizza" style="opacity:0;">
+      <div class="pizza-container">
+        <div class="pizza-whole">
+          <div class="pizza-base"></div>
+          <div class="pizza-sauce"></div>
+          <div class="pizza-cheese"></div>
+          <div class="pizza-topping t1"></div>
+          <div class="pizza-topping t2"></div>
+          <div class="pizza-topping t3"></div>
+          <div class="pizza-topping t4"></div>
+          <div class="pizza-topping t5"></div>
+          <div class="pizza-crust"></div>
+          <div class="pizza-slice-cut sc1"></div>
+          <div class="pizza-slice-cut sc2"></div>
+          <div class="pizza-slice-cut sc3"></div>
+        </div>
+      </div>
+      <div class="scene-label">FIRED WITH PASSION</div>
+    </div>
+
+    <!-- Outro text -->
+    <div class="intro-brand" id="introBrand">
+      <div class="intro-brand-name">NOIR</div>
+      <div class="intro-brand-tagline">Artisan Café & Kitchen</div>
+    </div>
+
+    <div class="intro-skip" id="introSkip">SKIP INTRO</div>
+  </div>
+
+  <!-- MAIN WEBSITE -->
+  <div id="mainSite" style="opacity:0; visibility:hidden;">
+
+    <!-- NAV -->
+    <nav id="mainNav">
+      <div class="nav-logo">NOIR</div>
+      <div class="nav-links">
+        <a href="#" class="nav-link active" data-section="home">Home</a>
+        <a href="#" class="nav-link" data-section="menu">Menu</a>
+        <a href="#" class="nav-link" data-section="about">About</a>
+        <a href="#" class="nav-link" data-section="gallery">Gallery</a>
+        <a href="#" class="nav-link" data-section="contact">Contact</a>
+      </div>
+      <div class="nav-reserve">
+        <span>Reserve a Table</span>
+      </div>
+      <div class="nav-hamburger" id="navHamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-links">
+        <a href="#" class="mob-link" data-section="home">Home</a>
+        <a href="#" class="mob-link" data-section="menu">Menu</a>
+        <a href="#" class="mob-link" data-section="about">About</a>
+        <a href="#" class="mob-link" data-section="gallery">Gallery</a>
+        <a href="#" class="mob-link" data-section="contact">Contact</a>
+      </div>
+    </div>
+
+    <!-- PAGE TRANSITION OVERLAY -->
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- ================================
+         SECTION: HOME
+    ================================ -->
+    <section class="page-section active" id="section-home">
+      <div class="hero">
+        <div class="hero-bg">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1920&q=90" alt="Café Ambiance" class="hero-img" />
+          <div class="hero-overlay"></div>
+          <div class="hero-grain"></div>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-eyebrow">Est. 2018 · Chennai, India</div>
+          <h1 class="hero-title">
+            <span class="hero-line l1">WHERE DARK</span>
+            <span class="hero-line l2"><em>ROASTS</em> MEET</span>
+            <span class="hero-line l3">GOLDEN MOMENTS</span>
+          </h1>
+          <p class="hero-sub">A sanctuary for those who demand more from their coffee, their food, and their time.</p>
+          <div class="hero-cta-wrap">
+            <button class="btn-primary" data-section="menu">Explore Menu</button>
+            <button class="btn-ghost" data-section="about">Our Story</button>
+          </div>
+        </div>
+
+        <div class="hero-scroll-cue">
+          <div class="scroll-line"></div>
+          <span>Scroll</span>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Signature Blends</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">48</div>
+            <div class="stat-label">Menu Items</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">6yrs</div>
+            <div class="stat-label">Of Excellence</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured row -->
+      <div class="featured-strip">
+        <div class="featured-item" data-section="menu">
+          <div class="feat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=600&q=80" alt="Coffee" />
+            <div class="feat-overlay"></div>
+          </div>
+          <div class="feat-info">
+            <span class="feat-category">Signature</span>
+            <h3>Black Velvet Espresso</h3>
+            <p>Triple-shot darkness, kissed with cardamom</p>
+            <span class="feat-price">₹320</span>
+          </div>
+        </div>
+        <div class="featured-item" data-section="menu">
+          <div class="feat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1550950158-d0d960dff596?w=600&q=80" alt="Burger" />
+            <div class="feat-overlay"></div>
+          </div>
+          <div class="feat-info">
+            <span class="feat-category">Chef's Pick</span>
+            <h3>Noir Smash Burger</h3>
+            <p>Double-smashed wagyu, truffle aioli, aged cheddar</p>
+            <span class="feat-price">₹680</span>
+          </div>
+        </div>
+        <div class="featured-item" data-section="menu">
+          <div class="feat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Pizza" />
+            <div class="feat-overlay"></div>
+          </div>
+          <div class="feat-info">
+            <span class="feat-category">Wood-Fired</span>
+            <h3>La Notte Bianca Pizza</h3>
+            <p>White base, truffle oil, wild mushrooms, arugula</p>
+            <span class="feat-price">₹750</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         SECTION: MENU
+    ================================ -->
+    <section class="page-section" id="section-menu" style="display:none;">
+      <div class="section-hero menu-hero">
+        <div class="sh-bg">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&q=80" alt="Menu" />
+          <div class="sh-overlay"></div>
+        </div>
+        <div class="sh-content">
+          <div class="sh-eyebrow">— Our Offerings —</div>
+          <h2 class="sh-title">The Menu</h2>
+          <p class="sh-sub">Every plate, every cup — a testament to obsession.</p>
+        </div>
+      </div>
+
+      <div class="menu-container">
+        <div class="menu-tabs">
+          <button class="menu-tab active" data-cat="coffee">Coffee</button>
+          <button class="menu-tab" data-cat="food">Mains</button>
+          <button class="menu-tab" data-cat="desserts">Desserts</button>
+          <button class="menu-tab" data-cat="drinks">Cold Drinks</button>
+        </div>
+
+        <!-- Coffee -->
+        <div class="menu-grid active" id="cat-coffee">
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" alt="Espresso" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Classic</div>
+              <h4>Single Origin Espresso</h4>
+              <p>Bright, complex, terroir-driven</p>
+              <div class="mc-footer"><span class="mc-price">₹220</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=400&q=80" alt="Black Velvet" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Signature</div>
+              <h4>Black Velvet Espresso</h4>
+              <p>Triple shot, cardamom, dark chocolate finish</p>
+              <div class="mc-footer"><span class="mc-price">₹320</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" alt="Latte" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Classic</div>
+              <h4>Velvet Flat White</h4>
+              <p>Micro-foam, double ristretto, oat milk option</p>
+              <div class="mc-footer"><span class="mc-price">₹280</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1470338745628-171cf53de3a8?w=400&q=80" alt="Pour Over" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Pour Over</div>
+              <h4>Chemex Slow Drip</h4>
+              <p>Ethiopian Yirgacheffe, florals & citrus</p>
+              <div class="mc-footer"><span class="mc-price">₹380</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=80" alt="Cold Brew" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Cold</div>
+              <h4>Noir Cold Brew</h4>
+              <p>18-hour steep, served over crystal ice</p>
+              <div class="mc-footer"><span class="mc-price">₹340</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1542665952-8e3f7c9de06f?w=400&q=80" alt="Cortado" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Seasonal</div>
+              <h4>Saffron Cortado</h4>
+              <p>Spanish-style, saffron-infused steamed milk</p>
+              <div class="mc-footer"><span class="mc-price">₹360</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mains -->
+        <div class="menu-grid" id="cat-food" style="display:none;">
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1550950158-d0d960dff596?w=400&q=80" alt="Burger" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Chef's Pick</div>
+              <h4>Noir Smash Burger</h4>
+              <p>Wagyu double patty, truffle aioli, aged cheddar, brioche</p>
+              <div class="mc-footer"><span class="mc-price">₹680</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Pizza" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Wood-Fired</div>
+              <h4>La Notte Bianca Pizza</h4>
+              <p>Truffle oil, wild mushrooms, arugula, parmesan</p>
+              <div class="mc-footer"><span class="mc-price">₹750</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Pizza Margherita" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Classic</div>
+              <h4>Diavola Rossa</h4>
+              <p>San Marzano tomatoes, nduja, fresh basil, fior di latte</p>
+              <div class="mc-footer"><span class="mc-price">₹680</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80" alt="Salad" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Light</div>
+              <h4>Charred Peach Salad</h4>
+              <p>Burrata, grilled peach, candied walnut, champagne vinaigrette</p>
+              <div class="mc-footer"><span class="mc-price">₹520</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=400&q=80" alt="Croissant" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">All Day</div>
+              <h4>Dark Truffle Croque</h4>
+              <p>House-baked bread, black truffle, gruyère, prosciutto</p>
+              <div class="mc-footer"><span class="mc-price">₹480</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80" alt="Pasta" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">House Special</div>
+              <h4>Midnight Cacio e Pepe</h4>
+              <p>Squid ink tonnarelli, pecorino, black pepper crema</p>
+              <div class="mc-footer"><span class="mc-price">₹580</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="menu-grid" id="cat-desserts" style="display:none;">
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80" alt="Cake" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Signature</div>
+              <h4>Obsidian Chocolate Torte</h4>
+              <p>85% Valrhona, salted caramel, edible gold leaf</p>
+              <div class="mc-footer"><span class="mc-price">₹420</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&q=80" alt="Tiramisu" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Classic</div>
+              <h4>Café Tiramisu</h4>
+              <p>Noir espresso-soaked ladyfingers, mascarpone cloud</p>
+              <div class="mc-footer"><span class="mc-price">₹380</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="Tart" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Seasonal</div>
+              <h4>Burnt Honey Tart</h4>
+              <p>Almond frangipane, burnt honey custard, lavender</p>
+              <div class="mc-footer"><span class="mc-price">₹360</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cold Drinks -->
+        <div class="menu-grid" id="cat-drinks" style="display:none;">
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80" alt="Smoothie" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Refreshing</div>
+              <h4>Midnight Matcha Latte</h4>
+              <p>Ceremonial grade matcha, coconut milk, toasted rice</p>
+              <div class="mc-footer"><span class="mc-price">₹320</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&q=80" alt="Cocktail" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Mocktail</div>
+              <h4>Rose Noir Fizz</h4>
+              <p>Rose water, activated charcoal, elderflower, sparkling</p>
+              <div class="mc-footer"><span class="mc-price">₹280</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="mc-img"><img src="https://images.unsplash.com/photo-1596803244897-f41b63cb4038?w=400&q=80" alt="Juice" /></div>
+            <div class="mc-info">
+              <div class="mc-tag">Fresh</div>
+              <h4>Golden Turmeric Tonic</h4>
+              <p>Cold-pressed turmeric, ginger, black pepper, coconut water</p>
+              <div class="mc-footer"><span class="mc-price">₹260</span><button class="mc-add">+</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         SECTION: ABOUT
+    ================================ -->
+    <section class="page-section" id="section-about" style="display:none;">
+      <div class="about-wrap">
+        <div class="about-hero">
+          <div class="about-hero-img">
+            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&q=85" alt="Coffee beans" />
+            <div class="about-hero-overlay"></div>
+          </div>
+          <div class="about-hero-text">
+            <div class="about-eyebrow">— Our Story —</div>
+            <h2 class="about-title">Born in the<br /><em>Dark Hours</em></h2>
+          </div>
+        </div>
+
+        <div class="about-body">
+          <div class="about-col left">
+            <div class="about-pull-quote">
+              "Great coffee is not brewed.<br />It is <em>composed</em>."
+            </div>
+            <div class="about-signature">— Arjun Rajan, Founder</div>
+          </div>
+          <div class="about-col right">
+            <p class="about-para reveal-text">NOIR was conceived at 2am in a small apartment in Chennai, when our founder Arjun Rajan realized that the city he loved deserved a café that matched its hidden sophistication. A place that understood silence, depth, and the quiet luxury of a perfectly made cup.</p>
+            <p class="about-para reveal-text">We source our beans directly from estates in Coorg, Araku Valley, and Yirgacheffe, Ethiopia — working with farmers who share our obsession with quality. Every roast batch is profiled by hand. Every espresso is pulled with intention.</p>
+            <p class="about-para reveal-text">Our kitchen follows the same philosophy: no shortcuts, no compromise. Ingredients are sourced daily. Bread is baked at dawn. The menu changes with the seasons.</p>
+          </div>
+        </div>
+
+        <div class="about-values">
+          <div class="value-card">
+            <div class="vc-number">01</div>
+            <h4>Obsessive Quality</h4>
+            <p>Every element of every dish and drink is scrutinized, refined, and elevated before it reaches you.</p>
+          </div>
+          <div class="value-card">
+            <div class="vc-number">02</div>
+            <h4>Direct Sourcing</h4>
+            <p>We know the names of the farmers who grow our coffee. That relationship is the foundation of our flavour.</p>
+          </div>
+          <div class="value-card">
+            <div class="vc-number">03</div>
+            <h4>Seasonal & Local</h4>
+            <p>Our menu is a living document — rewritten each season to honour what's freshest and most beautiful.</p>
+          </div>
+        </div>
+
+        <div class="about-image-row">
+          <div class="air-img ai1">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Barista" />
+          </div>
+          <div class="air-img ai2">
+            <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80" alt="Coffee art" />
+          </div>
+          <div class="air-img ai3">
+            <img src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?w=600&q=80" alt="Kitchen" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         SECTION: GALLERY
+    ================================ -->
+    <section class="page-section" id="section-gallery" style="display:none;">
+      <div class="gallery-wrap">
+        <div class="gallery-header">
+          <div class="gh-eyebrow">— Captured Moments —</div>
+          <h2 class="gh-title">The NOIR Experience</h2>
+        </div>
+        <div class="masonry-grid">
+          <div class="mg-item tall">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80" alt="Cafe interior" />
+            <div class="mg-overlay"><span>Ambiance</span></div>
+          </div>
+          <div class="mg-item">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Espresso" />
+            <div class="mg-overlay"><span>The Pour</span></div>
+          </div>
+          <div class="mg-item">
+            <img src="https://images.unsplash.com/photo-1550950158-d0d960dff596?w=600&q=80" alt="Burger" />
+            <div class="mg-overlay"><span>The Build</span></div>
+          </div>
+          <div class="mg-item wide">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80" alt="Counter" />
+            <div class="mg-overlay"><span>The Counter</span></div>
+          </div>
+          <div class="mg-item tall">
+            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&q=80" alt="Beans" />
+            <div class="mg-overlay"><span>Origin</span></div>
+          </div>
+          <div class="mg-item">
+            <img src="https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=600&q=80" alt="Latte" />
+            <div class="mg-overlay"><span>Latte Art</span></div>
+          </div>
+          <div class="mg-item">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Pizza" />
+            <div class="mg-overlay"><span>Wood Fire</span></div>
+          </div>
+          <div class="mg-item">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80" alt="Cake" />
+            <div class="mg-overlay"><span>Patisserie</span></div>
+          </div>
+          <div class="mg-item">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Barista" />
+            <div class="mg-overlay"><span>The Craft</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         SECTION: CONTACT
+    ================================ -->
+    <section class="page-section" id="section-contact" style="display:none;">
+      <div class="contact-wrap">
+        <div class="contact-left">
+          <div class="cl-eyebrow">— Get In Touch —</div>
+          <h2 class="cl-title">Visit<br /><em>NOIR</em></h2>
+          <div class="contact-details">
+            <div class="cd-item">
+              <div class="cd-label">Address</div>
+              <div class="cd-value">12, Khader Nawaz Khan Road,<br />Nungambakkam, Chennai 600 006</div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-label">Hours</div>
+              <div class="cd-value">Monday – Friday: 8am – 11pm<br />Saturday – Sunday: 9am – 12am</div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-label">Reservations</div>
+              <div class="cd-value">+91 98400 00000<br />hello@noircafe.in</div>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="#" class="cs-link">Instagram</a>
+            <a href="#" class="cs-link">Facebook</a>
+            <a href="#" class="cs-link">Zomato</a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="contact-form-wrap">
+            <h3>Reserve a Table</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="Your name" class="glass-input" />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="your@email.com" class="glass-input" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="glass-input" />
+              </div>
+              <div class="form-group">
+                <label>Guests</label>
+                <select class="glass-input">
+                  <option>1 Guest</option>
+                  <option>2 Guests</option>
+                  <option>3 Guests</option>
+                  <option>4 Guests</option>
+                  <option>5+ Guests</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label>Special Requests</label>
+              <textarea placeholder="Any dietary requirements, special occasions..." class="glass-input" rows="4"></textarea>
+            </div>
+            <button class="btn-primary submit-btn">Confirm Reservation</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="mainFooter">
+      <div class="footer-inner">
+        <div class="footer-logo">NOIR</div>
+        <div class="footer-tagline">Artisan Café & Kitchen · Chennai</div>
+        <div class="footer-links">
+          <a href="#" data-section="home">Home</a>
+          <a href="#" data-section="menu">Menu</a>
+          <a href="#" data-section="about">About</a>
+          <a href="#" data-section="gallery">Gallery</a>
+          <a href="#" data-section="contact">Contact</a>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2024 NOIR Café. All rights reserved.</span>
+          <span>Crafted with obsession.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /mainSite -->
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

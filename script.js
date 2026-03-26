@@ -79,88 +79,61 @@
      3. CINEMATIC INTRO SEQUENCE
   ───────────────────────────────────────────────────── */
   function runCinematicIntro(onComplete) {
-    const tl = gsap.timeline({ onComplete });
+    // Pizza slow-spin runs independently so it NEVER blocks the main timeline.
+    // The main tl's onComplete fires reliably at its natural end point.
+    let pizzaSpinTween = null;
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        // Kill the detached spin tween before handing off
+        if (pizzaSpinTween) pizzaSpinTween.kill();
+        onComplete();
+      }
+    });
 
     /* ── SCENE 1: COFFEE POUR ── */
     tl
-      // cup entrance
-      .to('.coffee-cup', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'expo.out' }, 0)
-      // fill liquid
-      .to('.cup-liquid', { height: '70%', duration: 1.2, ease: 'power2.inOut' }, 0.4)
-      // foam forms
-      .to('.cup-foam', { scaleY: 1, duration: 0.5, ease: 'back.out(2)' }, 1.2)
-      // pour streams drop
-      .to('.pour-stream', {
-        height: 90, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.08
-      }, 0.2)
-      // pour streams retract
-      .to('.pour-stream', {
-        height: 0, opacity: 0, duration: 0.4, ease: 'power2.in', stagger: 0.06
-      }, 1.1)
-      // steam rises
+      .to('.coffee-cup',      { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'expo.out' }, 0)
+      .to('.cup-liquid',      { height: '70%', duration: 1.2, ease: 'power2.inOut' }, 0.4)
+      .to('.cup-foam',        { scaleY: 1, duration: 0.5, ease: 'back.out(2)' }, 1.2)
+      .to('.pour-stream',     { height: 90, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.08 }, 0.2)
+      .to('.pour-stream',     { height: 0, opacity: 0, duration: 0.4, ease: 'power2.in',  stagger: 0.06 }, 1.1)
       .to('.steam-container', { opacity: 1, duration: 0.4 }, 1.0)
-      // scene label
-      .to('#scene-coffee .scene-label', {
-        opacity: 1, y: 0, duration: 0.6, ease: 'power2.out'
-      }, 0.8)
-      // scene 1 fade out
-      .to('#scene-coffee', { opacity: 0, duration: 0.5, ease: 'power2.inOut' }, 2.2)
+      .to('#scene-coffee .scene-label', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.8)
+      .to('#scene-coffee',    { opacity: 0, duration: 0.5, ease: 'power2.inOut' }, 2.2)
 
     /* ── SCENE 2: BURGER BUILD ── */
-      .to('#scene-burger', { opacity: 1, duration: 0.01 }, 2.4)
-      .to('.bun-bottom', {
-        opacity: 1, y: 0, scaleX: 1, duration: 0.35, ease: 'back.out(2)'
-      }, 2.4)
-      .to('.sauce-drip', {
-        opacity: 1, y: 0, scaleX: 1, duration: 0.3, ease: 'power2.out'
-      }, 2.65)
-      .to('.patty', {
-        opacity: 1, y: 0, scaleX: 1, duration: 0.35, ease: 'back.out(1.5)'
-      }, 2.85)
-      .to('.cheese', {
-        opacity: 1, y: 0, scaleX: 1, duration: 0.3, ease: 'power3.out'
-      }, 3.05)
-      .to('.tomato', {
-        opacity: 1, y: 0, scaleX: 1, duration: 0.3, ease: 'power2.out'
-      }, 3.2)
-      .to('.lettuce', {
-        opacity: 1, y: 0, scaleX: 1, duration: 0.3, ease: 'power2.out'
-      }, 3.35)
-      .to('.bun-top', {
-        opacity: 1, y: 0, scaleX: 1, duration: 0.4, ease: 'back.out(2)'
-      }, 3.5)
-      .to('#scene-burger .scene-label', {
-        opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'
-      }, 3.5)
-      .to('#scene-burger', { opacity: 0, duration: 0.5, ease: 'power2.inOut' }, 4.4)
+      .to('#scene-burger',    { opacity: 1, duration: 0.01 }, 2.4)
+      .to('.bun-bottom',      { opacity: 1, y: 0, scaleX: 1, duration: 0.35, ease: 'back.out(2)'   }, 2.4)
+      .to('.sauce-drip',      { opacity: 1, y: 0, scaleX: 1, duration: 0.3,  ease: 'power2.out'   }, 2.65)
+      .to('.patty',           { opacity: 1, y: 0, scaleX: 1, duration: 0.35, ease: 'back.out(1.5)' }, 2.85)
+      .to('.cheese',          { opacity: 1, y: 0, scaleX: 1, duration: 0.3,  ease: 'power3.out'   }, 3.05)
+      .to('.tomato',          { opacity: 1, y: 0, scaleX: 1, duration: 0.3,  ease: 'power2.out'   }, 3.2)
+      .to('.lettuce',         { opacity: 1, y: 0, scaleX: 1, duration: 0.3,  ease: 'power2.out'   }, 3.35)
+      .to('.bun-top',         { opacity: 1, y: 0, scaleX: 1, duration: 0.4,  ease: 'back.out(2)'  }, 3.5)
+      .to('#scene-burger .scene-label', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 3.5)
+      .to('#scene-burger',    { opacity: 0, duration: 0.5, ease: 'power2.inOut' }, 4.4)
 
-    /* ── SCENE 3: PIZZA SPIN ── */
-      .to('#scene-pizza', { opacity: 1, duration: 0.01 }, 4.5)
-      .to('.pizza-whole', {
-        opacity: 1, scale: 1, rotation: 0, duration: 1.0, ease: 'expo.out'
-      }, 4.5)
-      .to('.pizza-whole', {
-        rotation: 15, duration: 6, ease: 'none', repeat: -1
-      }, 5.2)
-      .to('#scene-pizza .scene-label', {
-        opacity: 1, y: 0, duration: 0.6, ease: 'power2.out'
-      }, 5.0)
-      .to('#scene-pizza', { opacity: 0, duration: 0.6, ease: 'power2.inOut' }, 6.0)
+    /* ── SCENE 3: PIZZA REVEAL (no repeat: -1 on the main tl) ── */
+      .to('#scene-pizza',     { opacity: 1, duration: 0.01 }, 4.5)
+      // Reveal: scale + rotation snap in
+      .to('.pizza-whole',     { opacity: 1, scale: 1, rotation: 0, duration: 1.0, ease: 'expo.out' }, 4.5)
+      // Kick off the infinite spin on a SEPARATE tween that won't block tl.onComplete
+      .call(() => {
+        pizzaSpinTween = gsap.to('.pizza-whole', {
+          rotation: '+=360', duration: 8, ease: 'none', repeat: -1
+        });
+      }, null, 5.2)
+      .to('#scene-pizza .scene-label', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 5.0)
+      .to('#scene-pizza',     { opacity: 0, duration: 0.6, ease: 'power2.inOut' }, 6.0)
 
     /* ── BRAND REVEAL ── */
-      .to('#introBrand', {
-        opacity: 1, duration: 0.8, ease: 'power2.out'
-      }, 6.0)
-      .to('.intro-brand-name', {
-        letterSpacing: '0.35em', duration: 1.2, ease: 'expo.out'
-      }, 6.0)
+      .to('#introBrand',        { opacity: 1, duration: 0.8, ease: 'power2.out'  }, 6.0)
+      .to('.intro-brand-name',  { letterSpacing: '0.35em', duration: 1.2, ease: 'expo.out' }, 6.0)
 
-    /* ── EXIT ── */
-      .to('#introBrand', { opacity: 0, y: -30, duration: 0.5, ease: 'power2.in' }, 7.5)
-      .to('#cinematicIntro', {
-        clipPath: 'inset(0 0 100% 0)',
-        duration: 0.8, ease: 'expo.inOut'
-      }, 7.6);
+    /* ── EXIT: wipe the intro overlay upward, then onComplete fires ── */
+      .to('#introBrand',      { opacity: 0, y: -30, duration: 0.5, ease: 'power2.in'  }, 7.5)
+      .to('#cinematicIntro',  { yPercent: -100, duration: 0.9, ease: 'expo.inOut' }, 7.6);
 
     return tl;
   }
@@ -170,33 +143,37 @@
   ───────────────────────────────────────────────────── */
   function animateSiteEntrance() {
     const site = document.getElementById('mainSite');
-    site.style.visibility = 'visible';
 
-    gsap.to(site, { opacity: 1, duration: 0.6, ease: 'power2.out' });
+    // Force the element fully into the render tree BEFORE GSAP touches it.
+    // Both visibility AND display must be set synchronously so the browser
+    // paints the element; only then does the opacity tween have something to show.
+    site.style.visibility = 'visible';
+    site.style.display     = 'block';
+    site.style.opacity     = '0';        // start transparent (controlled by JS, not CSS)
+
+    gsap.to(site, { opacity: 1, duration: 0.7, ease: 'power2.out',
+      onStart: () => {
+        // Double-guard: ensure visibility can't be overridden mid-tween
+        site.style.visibility = 'visible';
+      }
+    });
 
     // Nav slide in
-    gsap.from('#mainNav', {
-      y: -80, opacity: 0, duration: 1, ease: 'expo.out', delay: 0.2
-    });
+    gsap.from('#mainNav', { y: -80, opacity: 0, duration: 1, ease: 'expo.out', delay: 0.2 });
 
     // Hero content cascade
     const heroTl = gsap.timeline({ delay: 0.4 });
     heroTl
-      .to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' })
-      .from('.hero-line', {
-        y: 80, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.12
-      }, '-=0.3')
-      .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.4')
-      .to('.hero-cta-wrap', { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, '-=0.3')
-      .to('.hero-scroll-cue', { opacity: 1, duration: 0.5 }, '-=0.2')
-      .to('.hero-stats', { opacity: 1, duration: 0.6 }, '-=0.3');
+      .to('.hero-eyebrow',   { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' })
+      .from('.hero-line',    { y: 80, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.12 }, '-=0.3')
+      .to('.hero-sub',       { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, '-=0.4')
+      .to('.hero-cta-wrap',  { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, '-=0.3')
+      .to('.hero-scroll-cue',{ opacity: 1, duration: 0.5 }, '-=0.2')
+      .to('.hero-stats',     { opacity: 1, duration: 0.6 }, '-=0.3');
 
     // Featured cards stagger
-    gsap.from('.featured-item', {
-      y: 60, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.15, delay: 1.2
-    });
+    gsap.from('.featured-item', { y: 60, opacity: 0, duration: 0.9, ease: 'expo.out', stagger: 0.15, delay: 1.2 });
 
-    // Setup scroll triggers for all sections
     setupScrollAnimations();
   }
 
@@ -460,12 +437,26 @@
      11. SKIP INTRO
   ───────────────────────────────────────────────────── */
   function skipIntro() {
-    gsap.killTweensOf('*');
-    gsap.to('#cinematicIntro', {
-      opacity: 0, duration: 0.5, ease: 'power2.inOut',
+    // Kill only the intro timeline's tweens, NOT everything (which would
+    // also kill the site-entrance tweens that are about to start).
+    gsap.killTweensOf('#cinematicIntro');
+    gsap.killTweensOf('.pizza-whole');
+    gsap.killTweensOf('.coffee-cup');
+    gsap.killTweensOf('.pour-stream');
+    gsap.killTweensOf('.steam-container');
+    gsap.killTweensOf('.layer');
+    gsap.killTweensOf('#introBrand');
+    gsap.killTweensOf('#scene-coffee');
+    gsap.killTweensOf('#scene-burger');
+    gsap.killTweensOf('#scene-pizza');
+
+    const intro = document.getElementById('cinematicIntro');
+    gsap.to(intro, {
+      opacity: 0, duration: 0.4, ease: 'power2.inOut',
       onComplete: () => {
-        document.getElementById('cinematicIntro').style.display = 'none';
+        intro.style.display = 'none';
         animateSiteEntrance();
+        initGalleryEffects();
       }
     });
   }
@@ -588,10 +579,25 @@
     }, 500);
 
     // BOOT: Preloader → Cinematic Intro → Site
+    // Safety net: if something goes wrong in the intro (e.g. a browser that
+    // doesn't support a particular GSAP feature), force-reveal the site after
+    // a maximum of 11 seconds so users are never left on a blank screen.
+    const safetyTimer = setTimeout(() => {
+      const intro = document.getElementById('cinematicIntro');
+      if (intro && intro.style.display !== 'none') {
+        console.warn('NOIR: safety fallback triggered — forcing site reveal.');
+        intro.style.display = 'none';
+        animateSiteEntrance();
+        initGalleryEffects();
+      }
+    }, 11000);
+
     runPreloader(() => {
       setTimeout(() => {
         runCinematicIntro(() => {
-          document.getElementById('cinematicIntro').style.display = 'none';
+          clearTimeout(safetyTimer); // intro completed normally — cancel the fallback
+          const intro = document.getElementById('cinematicIntro');
+          if (intro) intro.style.display = 'none';
           animateSiteEntrance();
           initGalleryEffects();
         });

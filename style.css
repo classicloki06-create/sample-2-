@@ -123,6 +123,9 @@ body:has(button:hover) .cursor-follower { width: 56px; height: 56px; border-colo
   z-index: 99990;
   overflow: hidden;
   display: flex; align-items: center; justify-content: center;
+  /* transform-based exit (yPercent) is used instead of clipPath for
+     reliable cross-browser behaviour and so GSAP can sequence it correctly */
+  will-change: transform, opacity;
 }
 .intro-bg {
   position: absolute; inset: 0;
